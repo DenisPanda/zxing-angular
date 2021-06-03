@@ -11,7 +11,7 @@ import { AppInfoDialogComponent } from './app-info-dialog/app-info-dialog.compon
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  isOn = true;
   availableDevices: MediaDeviceInfo[];
   deviceCurrent: MediaDeviceInfo;
   deviceSelected: string;

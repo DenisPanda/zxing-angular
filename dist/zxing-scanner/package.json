@@ -1,6 +1,6 @@
 {
-  "name": "@zxing/ngx-scanner",
-  "version": "3.1.3",
+  "name": "@denis_panda/ngx-scanner",
+  "version": "0.0.2",
   "description": "High-performance Angular 8 barcode scanner component based on ZXing.",
   "private": false,
   "license": "MIT",
@@ -12,13 +12,13 @@
     "@zxing/library": "^0.18.3",
     "rxjs": "^6.6.3"
   },
-  "main": "bundles/zxing-ngx-scanner.umd.js",
-  "module": "fesm2015/zxing-ngx-scanner.js",
-  "es2015": "fesm2015/zxing-ngx-scanner.js",
-  "esm2015": "esm2015/zxing-ngx-scanner.js",
-  "fesm2015": "fesm2015/zxing-ngx-scanner.js",
-  "typings": "zxing-ngx-scanner.d.ts",
-  "metadata": "zxing-ngx-scanner.metadata.json",
+  "main": "bundles/denis_panda-ngx-scanner.umd.js",
+  "module": "fesm2015/denis_panda-ngx-scanner.js",
+  "es2015": "fesm2015/denis_panda-ngx-scanner.js",
+  "esm2015": "esm2015/denis_panda-ngx-scanner.js",
+  "fesm2015": "fesm2015/denis_panda-ngx-scanner.js",
+  "typings": "denis_panda-ngx-scanner.d.ts",
+  "metadata": "denis_panda-ngx-scanner.metadata.json",
   "sideEffects": false,
   "dependencies": {
     "tslib": "^2.0.0"

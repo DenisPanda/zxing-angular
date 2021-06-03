@@ -13,6 +13,7 @@
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="openFormatsDialog()">Barcode formats</button>
     <button mat-menu-item (click)="openInfoDialog()">App info</button>
+    <button mat-menu-item (click)="isOn = !isOn">on/off</button>
   </mat-menu>
 
   <header>
@@ -27,7 +28,7 @@
     </button>
   </header>
 
-  <zxing-scanner [torch]="torchEnabled" [device]="deviceCurrent" (deviceChange)="onDeviceChange($event)" (scanSuccess)="onCodeResult($event)"
+  <zxing-scanner *ngIf="isOn" [torch]="torchEnabled" [device]="deviceCurrent" (deviceChange)="onDeviceChange($event)" (scanSuccess)="onCodeResult($event)"
     [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
     (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
 

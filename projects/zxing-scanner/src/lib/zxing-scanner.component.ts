@@ -537,8 +537,34 @@ export class ZXingScannerComponent implements OnInit, OnDestroy {
   /**
    * Executes some actions before destroy the component.
    */
-  ngOnDestroy(): void {
-    this.reset();
+  async ngOnDestroy(): Promise<any> {
+    let stream = await this.getAnyVideoDevice();
+    this.terminateStream(stream);
+    return new Promise((resolve) => {
+      const videoEl = this.previewElemRef.nativeElement
+
+      if (videoEl) {
+        const stream = videoEl.srcObject as MediaStream;
+
+        if (stream) {
+
+          const tracks = stream.getTracks();
+
+          tracks.forEach(function(track) {
+            track.stop();
+          });
+
+          videoEl.srcObject = null;
+        } else {
+          console.log('No stream available', {videoEl})
+        }
+      } else {
+        console.log('No video stream', {videoEl});
+      }
+
+      this.reset();
+      resolve(null);
+    })
   }
 
   /**

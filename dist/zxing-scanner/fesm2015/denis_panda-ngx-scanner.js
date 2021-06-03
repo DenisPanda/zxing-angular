@@ -382,7 +382,31 @@ class ZXingScannerComponent {
      * Executes some actions before destroy the component.
      */
     ngOnDestroy() {
-        this.reset();
+        return __awaiter(this, void 0, void 0, function* () {
+            let stream = yield this.getAnyVideoDevice();
+            this.terminateStream(stream);
+            return new Promise((resolve) => {
+                const videoEl = this.previewElemRef.nativeElement;
+                if (videoEl) {
+                    const stream = videoEl.srcObject;
+                    if (stream) {
+                        const tracks = stream.getTracks();
+                        tracks.forEach(function (track) {
+                            track.stop();
+                        });
+                        videoEl.srcObject = null;
+                    }
+                    else {
+                        console.log('No stream available', { videoEl });
+                    }
+                }
+                else {
+                    console.log('No video stream', { videoEl });
+                }
+                this.reset();
+                resolve(null);
+            });
+        });
     }
     /**
      *
@@ -718,4 +742,4 @@ ZXingScannerModule.decorators = [
  */
 
 export { ZXingScannerComponent, ZXingScannerModule };
-//# sourceMappingURL=zxing-ngx-scanner.js.map
+//# sourceMappingURL=denis_panda-ngx-scanner.js.map

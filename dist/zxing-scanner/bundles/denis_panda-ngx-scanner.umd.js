@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/forms'), require('@zxing/browser'), require('@zxing/library'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('@zxing/ngx-scanner', ['exports', '@angular/common', '@angular/core', '@angular/forms', '@zxing/browser', '@zxing/library', 'rxjs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.zxing = global.zxing || {}, global.zxing['ngx-scanner'] = {}), global.ng.common, global.ng.core, global.ng.forms, global.browser, global.library, global.rxjs));
+    typeof define === 'function' && define.amd ? define('@denis_panda/ngx-scanner', ['exports', '@angular/common', '@angular/core', '@angular/forms', '@zxing/browser', '@zxing/library', 'rxjs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.denis_panda = global.denis_panda || {}, global.denis_panda['ngx-scanner'] = {}), global.ng.common, global.ng.core, global.ng.forms, global.browser, global.library, global.rxjs));
 }(this, (function (exports, common, core, forms, browser, library, rxjs) { 'use strict';
 
     /*! *****************************************************************************
@@ -782,7 +782,39 @@
          * Executes some actions before destroy the component.
          */
         ZXingScannerComponent.prototype.ngOnDestroy = function () {
-            this.reset();
+            return __awaiter(this, void 0, void 0, function () {
+                var stream;
+                var _this = this;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0: return [4 /*yield*/, this.getAnyVideoDevice()];
+                        case 1:
+                            stream = _c.sent();
+                            this.terminateStream(stream);
+                            return [2 /*return*/, new Promise(function (resolve) {
+                                    var videoEl = _this.previewElemRef.nativeElement;
+                                    if (videoEl) {
+                                        var stream_1 = videoEl.srcObject;
+                                        if (stream_1) {
+                                            var tracks = stream_1.getTracks();
+                                            tracks.forEach(function (track) {
+                                                track.stop();
+                                            });
+                                            videoEl.srcObject = null;
+                                        }
+                                        else {
+                                            console.log('No stream available', { videoEl: videoEl });
+                                        }
+                                    }
+                                    else {
+                                        console.log('No video stream', { videoEl: videoEl });
+                                    }
+                                    _this.reset();
+                                    resolve(null);
+                                })];
+                    }
+                });
+            });
         };
         /**
          *
@@ -1161,4 +1193,4 @@
     Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
-//# sourceMappingURL=zxing-ngx-scanner.umd.js.map
+//# sourceMappingURL=denis_panda-ngx-scanner.umd.js.map

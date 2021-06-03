@@ -210,7 +210,7 @@ export declare class ZXingScannerComponent implements OnInit, OnDestroy {
     /**
      * Executes some actions before destroy the component.
      */
-    ngOnDestroy(): void;
+    ngOnDestroy(): Promise<any>;
     /**
      *
      */
